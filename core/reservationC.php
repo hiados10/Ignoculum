@@ -83,11 +83,9 @@ class reservationC
 
 	public function afficheReservation($recherche='')
 	{
-		if ($recherche=='')
-			$sql="SElECT numReservation,dateReservation,heureReservation,etatReservation,r.id_service as idService ,Nom,Prenom,NomService,PrixService From reservation r join service s on r.id_service = s.id_service join compte c on compte_cin = c.cin ";
-		else
-			$sql="SElECT numReservation,dateReservation,heureReservation,etatReservation,r.id_service as idService , Nom , Prenom , NomService , PrixService From reservation r join service s on r.id_service = s.id_service join compte c on compte_cin = c.cin where Nom like '%".$recherche."%' or Prenom like '%".$recherche."%'";
-
+		$sql="SElECT numReservation,dateReservation,heureReservation,etatReservation,r.id_service as idService ,Nom,Prenom,NomService,PrixService From reservation r join service s on r.id_service = s.id_service join compte c on compte_cin = c.cin";
+		if ($recherche!='')
+			$sql=$sql." where concat(concat(Nom,' '),Prenom) like '%".$recherche."%'";
 		$db = config::getConnexion();
 		try{
 		$reserv=$db->query($sql);
@@ -100,11 +98,9 @@ class reservationC
 
 		public function afficheReservation1($recherche='')
 	{
-		if ($recherche=='')
-			$sql="SElECT numReservation,dateReservation,heureReservation,etatReservation,r.id_service as idService ,Nom,Prenom,NomService,PrixService From reservation r join service s on r.id_service = s.id_service join compte c on s.compte_cin = c.cin ";
-		else
-			$sql="SElECT numReservation,dateReservation,heureReservation,etatReservation,r.id_service as idService , Nom , Prenom , NomService , PrixService From reservation r join service s on r.id_service = s.id_service join compte c on s.compte_cin = c.cin where Nom like '%".$recherche."%' or Prenom like '%".$recherche."%'";
-
+		$sql="SElECT numReservation,dateReservation,heureReservation,etatReservation,r.id_service as idService ,Nom,Prenom,NomService,PrixService From reservation r join service s on r.id_service = s.id_service join compte c on r.cin = c.cin";
+		if ($recherche!='')
+			$sql=$sql." where concat(concat(Nom,' '),Prenom) like '%".$recherche."%'";
 		$db = config::getConnexion();
 		try{
 		$reserv=$db->query($sql);
@@ -158,13 +154,12 @@ class reservationC
         }
 	}
 
-	public function modifierEtatReservation($reservation,$numReservation)
+	public function modifierEtatReservation($etatReservation,$numReservation)
 	{
 		$sql="UPDATE reservation SET etatReservation=:etatReservation WHERE numReservation=:numReservation";
 			$db=config::getConnexion();
 			try{
 			$req=$db->prepare($sql);
-			$etatReservation=$reservation->getEtatReservation();
 			
 			$req->bindValue(':numReservation',$numReservation);
 			$req->bindValue(':etatReservation',$etatReservation);

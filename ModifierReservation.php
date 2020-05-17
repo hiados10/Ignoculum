@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Fiction Multipage Bootstrap Template</title>
+    <title>Arachnide</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,8 +34,8 @@
     <script src="plugins/modernizr.min.js"></script>
   </head>
   <body>
-<?PHPinclude "../../config.php";
-      
+<?PHP
+      include "../../config.php";
       include "../entities/reservation.php";
       include "../core/reservationC.php";
 
@@ -46,8 +46,7 @@ if (isset($_GET['numReservation'])){
   {
     $numReservation=$row['numReservation'];
     $dateReservation=$row['dateReservation'];
-    $heureReservation=$row['heureReservation'];
-   
+    $heureReservation=$row['heureReservation'];  
 ?>
     <!--[if lt IE 8]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -124,14 +123,11 @@ if (isset($_GET['numReservation'])){
 
 <?PHP
 	  //include "../../config.php";
-    //include "../../core/reservationC.php";
+    //include "../core/reservationC.php";
 
     $reservationC=new reservationC();
     $reserv=$reservationC->afficheReservation(); 
 ?>
-          
-          <div class="col-md-12">
-          </div>
             
           <div class="col-md-12">
             <div class="contact-btn text-center">

@@ -14,7 +14,7 @@ if(isset($_GET['recherche']))
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Fiction Multipage Bootstrap Template</title>
+    <title>Arachnide</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -143,7 +143,7 @@ $s2=$reservation1C->recupererCompte();
   <td><?PHP echo $row['NomService']?></td>
   <td><?PHP echo $row['dateReservation']; ?></td>
   <td><?PHP echo $row['heureReservation']; ?></td>
-  <td><?PHP if ( $row['etatReservation'] == 0) { echo "Pas encore confirmée"; } else  {echo "Confirmée";} ?></td>
+  <td><?PHP if ( $row['etatReservation'] == 0) echo "Pas encore confirmée"; elseif ($row['etatReservation'] == 1) echo "Confirmée"; else echo "Refusée"; ?></td>
 
   <td><form method="POST" action="supprimerReservation.php">
   <input class="btn btn-default btn-main" type="submit" name="supprimer" OnClick="return confirm('Voulez vous vraiment supprimer cette reservation ?');" value="supprimer">

@@ -2,6 +2,8 @@
 include "../../config.php";
 include "../core/reservationC.php";
 $reservation1C=new reservationC();
+if (isset($_GET['idmod']) and isset($_GET['etat']))
+  $reservation1C->modifierEtatReservation($_GET['etat'],$_GET['idmod']);
 if(isset($_GET['recherche']))
   $listereservations=$reservation1C->afficheReservation1($_GET['recherche']);
   else
@@ -14,7 +16,7 @@ if(isset($_GET['recherche']))
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Fiction Multipage Bootstrap Template</title>
+    <title>Arachnide</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -143,45 +145,13 @@ $s2=$reservation1C->recupererCompte();
   <td><?PHP echo $row['NomService']?></td>
   <td><?PHP echo $row['dateReservation']; ?></td>
   <td><?PHP echo $row['heureReservation']; ?></td>
-  <td><?PHP if ( $row['etatReservation'] == 0) { echo "Pas encore confirmée"; } else  {echo "Confirmée";} ?></td>
+  <td><?PHP if ( $row['etatReservation'] == 0) echo "Pas encore confirmée"; elseif ($row['etatReservation'] == 1) echo "Confirmée"; else echo "Refusée"; ?></td>
 
-<?php
-  if ($row['etatReservation']==1)
-  {
-?>
-  <td><form method="POST"><input class="btn btn-default btn-main" type="submit" name="Accepter" value=" Accepter" disabled>
- </form>
-</td>
-<?php
-}
-else
-{
-?>
-  <td><form method="POST"><input class="btn btn-default btn-main" type="submit" name="Accepter" value=" Accepter">
- </form>
-</td>
-<?php
-}
-?>
 
-<?php
-  if ($row['etatReservation']==0)
-  {
-?>
-  <td><form method="POST"><input class="btn btn-default btn-main" type="submit" name="Refuser" value=" Refuser" disabled>
- </form>
-</td>
-<?php
-}
-else
-{
-?>
-  <td><form method="POST"><input class="btn btn-default btn-main" type="submit" name="Refuser" value=" Refuser">
- </form>
-</td>
-<?php
-}
-?>
+  <td><a href="AfficherReservation1.php?idmod=<?php echo $row['numReservation']; ?>&etat=1" class="btn btn-default btn-main">Accepter</a></td>
+  <td><a href="AfficherReservation1.php?idmod=<?php echo $row['numReservation']; ?>&etat=2" class="btn btn-default btn-main">Refuser</a></td>
+
+
 
   <script>
 
