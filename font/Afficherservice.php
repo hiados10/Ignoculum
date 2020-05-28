@@ -1,4 +1,6 @@
+
 <?PHP
+session_start ();  
 include "../../config.php";
 include "../../core/serviceC.php";
 include "../../core/categorieC.php";
@@ -208,7 +210,7 @@ if (isset($_GET['search']))
 foreach($listeservices as $row){
   ?>
   <div>
-          <div class="filtr-item col-md-4 col-sm-6 col-xs-12" data-category="category-1">
+          <div class="filter-item col-md-4 col-sm-6 col-xs-12" data-category="category-1">
             <div class="portfolio-list">
               <a href="service.php?id_service=<?PHP echo $row['id_service']; ?>">
                 <div class="th-mouse-portfolio-card">
@@ -275,7 +277,7 @@ function myFunction() {
 
 </script>
   
-  </tr>
+  
   <?PHP
 }
 ?>
@@ -288,99 +290,7 @@ function myFunction() {
 
   <!-- Pricing Table Sections 
   =========================-->
-  <div class="inner-block">
-    <div class="product-block">
-    	<div class="pro-head">  
-    	</div>
-    	<table border="1" id="myTable">
 
-<?PHP
-foreach($listeservices as $row){
-  ?>
-  <tr>
-    <th>
-  <div class="filtr-item col-md-4 col-sm-6 col-xs-12" data-category="category-2">
-            <div class="portfolio-list">
-              <a href="service.php?id_service=<?PHP echo $row['id_service']; ?>">
-                <div class="th-mouse-portfolio-card">
-                  <div class="thumbnail portfolio-thumbnail">
-                    <img src="<?PHP echo $row['img']; ?>" alt="Portfolio" style="max-width: 500px;max-height:500px;">
-                    <div class="caption portfolio-caption">
-                      <p class="date"><?PHP echo $row['nom']; ?></p>
-                      <h3 class="portfolio-title"><?PHP echo $row['nom_service']; ?></h3>
-                      <p class="portfolio-subtitle"><?PHP echo $row['prix_service']; ?></p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div> 
-</th>
-</tr>
-  <tr>
-  <?php
-		
-		$categorieC=new CategorieC();
-		$liste=$categorieC->afficherCategories(); ?>
-  
-
-  </form>
-
-  </td>
-
-  <script>
-
-function myFunction() {
-
-  var input, filter, table, tr, td, i, txtValue;
-
-  input = document.getElementById("myInput");
-
-  filter = input.value.toUpperCase();
-
-  table = document.getElementById("myTable");
-
-  tr = table.getElementsByTagName("tr");
-
-  for (i = 0; i < tr.length; i++) {
-
-    td = tr[i].getElementsByTagName("td")[2];
-
-    if (td) {
-
-      txtValue = td.textContent || td.innerText;
-
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-
-        tr[i].style.display = "";
-
-      } else {
-
-        tr[i].style.display = "none";
-
-      }
-
-    }      
-
-  }
-
-}
-
-</script>
-  
-  </tr>
-  <?PHP
-}
-?>
-</table>
-
-  
-    	
-    	
-      <div class="clearfix"> </div>
-
-    </div>
-</div>
             <!-- pricing table
             ===================== -->
             
@@ -393,7 +303,28 @@ function myFunction() {
                             ========================== -->
                        
 
+                            <?php
+// On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
+ 
+// On récupère nos variables de session
+if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
+{ 
 
+	 echo 'Votre login est <b>'.$_SESSION['l'].'</b> <br>et votre mot de passe est <b>'.$_SESSION['p'].
+	'</b><br>Votre role est : '.$_SESSION['r'].' <br/> Identifiant de la session est :'.session_id().'</br>'; 
+	echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
+
+}
+
+else { 
+      echo 'Veuillez vous connecter </br>';  
+	  echo '<a href="./auth.php">Cliquer pour se connecter</a>';
+
+}  
+//définir la session une session est un tableau temporaire 
+//1 er point c quoi une session
+// 
+?>
     <script src="plugins/jquery.min.js"></script>
 
     <script src="plugins/bootstrap/bootstrap.min.js"></script>
@@ -417,5 +348,7 @@ function myFunction() {
     </html>
 
 
+
+  
 
   
