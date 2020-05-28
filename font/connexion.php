@@ -36,11 +36,12 @@ if (!empty($_POST['login']) && !empty($_POST['pwd'])){
 		$_SESSION['l']=$_POST['login'];
 		$_SESSION['p']=$_POST['pwd'];
 		$_SESSION['r']=$t['role'];
+		$_SESSION['u']=$t['iduser'];
 		//header("location:Afficherservice.php");
 		if($t['role']=="admin")
 		header("location:Afficherservice.php");
 	else if ($t['role']=="donneur")
-	echo 'enti ta3ti les services';
+	header("location:Afficherservicedonneur.php");
 	else if ($t['role']=="client")
 	header("location:Afficherserviceclient.php");
 

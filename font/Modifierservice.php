@@ -1,3 +1,6 @@
+<?PHP
+session_start ();  
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
   <head>
@@ -115,7 +118,7 @@ if (isset($_GET['id_service'])){
    oninput="setCustomValidity('')">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Prix" name="prix_service" id="prix_service"value="<?PHP echo $prix_service ?>" >
+              <input type="text" class="form-control" placeholder="Prix" name="prix_service" id="prix_service" required pattern="[0-9]+" oninvalid="setCustomValidity('Veuillez entrer des nombres seulement')" value="<?PHP echo $prix_service ?>" >
             </div>
             
           </div>
@@ -148,7 +151,11 @@ foreach($liste as $row){
           <div class="col-md-12">
           </div>
           <div class="form-group">
-            <input type="file" class="form-control" value="<?PHP echo $img ?>" accept="image/jpg" name="img" id="imageFile" onchange="changeImage(row)">            </div>
+          <input type="text"  value="<?PHP echo $img;?>">
+            <input type="file" class="form-control" value="<?PHP echo $nom_service.".jpeg";?>" accept="image/jpg" name="imageFile" id="imageFile" onchange="changeImage(row)">
+            <input type="file" /> <span><?php echo $img; ?></span>
+             </div>
+             
           <div class="col-md-12">
           </div>
           <div class="col-md-12">
@@ -178,7 +185,30 @@ foreach($liste as $row){
             ===================== -->
                             <!-- footer Media link section
                             ========================== -->
-                       
+                                 
+
+                            <?php
+// On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
+ 
+// On récupère nos variables de session
+if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
+{ 
+
+	 echo 'Votre login est <b>'.$_SESSION['l'].'</b> <br>et votre mot de passe est <b>'.$_SESSION['p'].
+	'</b><br>Votre role est : '.$_SESSION['r'].' <br/> Identifiant de la session est :'.session_id().'</br>'; 
+	echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
+
+}
+
+else { 
+      echo 'Veuillez vous connecter </br>';  
+	  echo '<a href="./auth.php">Cliquer pour se connecter</a>';
+
+}  
+//définir la session une session est un tableau temporaire 
+//1 er point c quoi une session
+// 
+?>
 
 
     <script src="plugins/jquery.min.js"></script>
@@ -206,19 +236,20 @@ foreach($liste as $row){
   }
 }
 if (isset($_POST['modifier'])){
-  $fileTmpPath = $_FILES['img']['tmp_name'];
-  $fileName = $_FILES['img']['name'];
-  $fileSize = $_FILES['img']['size'];
-  $fileType = $_FILES['img']['type'];
+  $fileTmpPath = $_FILES['imageFile']['tmp_name'];
+  $fileName = $_FILES['imageFile']['name'];
+  $fileSize = $_FILES['imageFile']['size'];
+  $fileType = $_FILES['imageFile']['type'];
   $fileNameCmps = explode(".", $fileName);
   $fileExtension = strtolower(end($fileNameCmps));
   $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
   $uploadFileDir = './uploaded_files/';
   $dest_path = $uploadFileDir . $newFileName;
-  $service=new service($_POST['nom_service'],$_POST['idca'],$_POST['prix_service'],$_POST['description_service'],'./pictures/'.$_POST['nom_service'].'.jpg');
-  $serviceC->modifierservice($service,$_POST['id_ini']);
+  
+  $service1=new service($_POST['nom_service'],$_POST['idca'],$_POST['prix_service'],$_POST['description_service'],$_POST['imageFile']);
+  //Partie2
   echo $_POST['id_ini'];
-  header('Location: Afficherservice.php');
+  //header('Location: Afficherservice.php');
     echo "<script language=javascript>
   notifyMe();
   </script>"; 

@@ -1,3 +1,6 @@
+<?PHP
+session_start ();  
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
   <head>
@@ -93,11 +96,10 @@
         <form class="" method="post" action="ajoutservice.php" enctype="multipart/form-data">
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nom" id="nom_service" name="nom_service" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres seulement')" 
-   oninput="setCustomValidity('')">
+              <input type="text" class="form-control" placeholder="Nom" id="nom_service" name="nom_service" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres seulement')"  oninput="setCustomValidity('')">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Prix" name="prix_service" id="prix_service" >
+              <input type="text" class="form-control" placeholder="Prix" name="prix_service" id="prix_service"required pattern="[0-9]+" oninvalid="setCustomValidity('Veuillez entrer des nombres seulement')"  oninput="setCustomValidity('')"  >
             </div>
             
           </div>
@@ -128,7 +130,8 @@ foreach($liste as $row){
               <textarea type="text" class="form-control" placeholder="Description" name="description_service" id="description_service" ></textarea>
             </div>
             <div class="form-group">
-            <input type="file" class="form-control" accept="image/jpg" name="img" id="imageFile" onchange="changeImage(row)">            </div>
+            <input type="file" class="form-control" accept="image/jpg" name="img" id="imageFile" onchange="changeImage(row)">  
+                      </div>
           <div class="col-md-12">
           </div>
             
@@ -165,7 +168,30 @@ foreach($liste as $row){
                             <!-- footer Media link section
                             ========================== -->
                        
+          
 
+                            <?php
+// On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
+ 
+// On récupère nos variables de session
+if (isset($_SESSION['l']) && isset($_SESSION['p'])) 
+{ 
+
+	 echo 'Votre login est <b>'.$_SESSION['l'].'</b> <br>et votre mot de passe est <b>'.$_SESSION['p'].
+	'</b><br>Votre role est : '.$_SESSION['r'].' <br/> Identifiant de la session est :'.session_id().'</br>'; 
+	echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
+
+}
+
+else { 
+      echo 'Veuillez vous connecter </br>';  
+	  echo '<a href="./auth.php">Cliquer pour se connecter</a>';
+
+}  
+//définir la session une session est un tableau temporaire 
+//1 er point c quoi une session
+// 
+?>
 
     <script src="plugins/jquery.min.js"></script>
 

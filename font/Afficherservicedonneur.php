@@ -7,7 +7,7 @@ include "../../core/categorieC.php";
 $categorie1C=new CategorieC();
 $listeCategories=$categorie1C->afficherCategories();
 $service1C=new serviceC();
-$listeservices=$service1C->Affichservice();
+$listeservices=$service1C->Affichservice2($_SESSION['u']);
 $res=false;
 $maction='afficher';
 $cat="";
@@ -39,6 +39,10 @@ if (isset($_GET['search']))
    echo "heyy";
       echo $cat;
 
+    }
+    if(isset($_GET['trierm']))
+    {
+      $listeservices=$service1C->trierm($_SESSION['u']);
     }
 
 //var_dump($listeEmployes->fetchAll());
@@ -127,7 +131,7 @@ if (isset($_GET['search']))
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right menu">
-       
+      <li><a href="Ajouterservice.php">ajouter</a></li>
        
         <li><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">chercher</a>
         <ul class="sub-menu children dropdown-menu">
@@ -176,7 +180,7 @@ if (isset($_GET['search']))
 <!-- tri prix et alphabet--------------------------------------------------->
 <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right menu">
-     
+
         <li><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TRIER PAR</a>
         <ul class="sub-menu children dropdown-menu">
                             <li>
@@ -190,9 +194,7 @@ if (isset($_GET['search']))
                         </ul>
                         
       </li>
-      <li><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MES SERVICES</a>
-     </li> 
-      
+     
 
       </ul>
     </div>
@@ -200,14 +202,15 @@ if (isset($_GET['search']))
 <!--end tri prix et alphabet---------------------------------------------->
 
         <div class="protfolio-mixitup-btn text-center">
-        <a  href='Afficherservice.php'><button class="filter btn btn-default btn-main" name="trier" id="trier" data-filter="category-1">ALL</button></a>                                    
+        <a  href='Afficherservicedonneur.php?trierm=rr'><button class="filter btn btn-default btn-main" name="trier" id="trier" data-filter="category-1">Mes services</button></a>                                    
+        <a  href='Afficherservicedonneur.php'><button class="filter btn btn-default btn-main" name="trier" id="trier" data-filter="category-1">ALL</button></a>                                    
         
             
         <?PHP
                                     foreach($listeCategories as $row){
                                       ?>
                                       
-                                      <a  href='Afficherservice.php?cat=<?PHP echo $row['id_categorie']; ?>&trier=rr'><button class="filter btn btn-default btn-main" name="trier" id="trier" data-filter="category-1"><?PHP echo $row['nom']; ?></button></a>                                    
+                                      <a  href='Afficherservicedonneur.php?cat=<?PHP echo $row['id_categorie']; ?>&trier=rr'><button class="filter btn btn-default btn-main" name="trier" id="trier" data-filter="category-1"><?PHP echo $row['nom']; ?></button></a>                                    
                                     <?php } ?></div>
     
         
@@ -217,7 +220,7 @@ foreach($listeservices as $row){
   <div>
           <div class="filter-item col-md-4 col-sm-6 col-xs-12" data-category="category-1">
             <div class="portfolio-list">
-              <a href="serviceclient.php?id_service=<?PHP echo $row['id_service']; ?>">
+              <a href="service.php?id_service=<?PHP echo $row['id_service']; ?>">
                 <div class="th-mouse-portfolio-card">
                   <div class="thumbnail portfolio-thumbnail">
                     <img src="<?PHP echo $row['img']; ?>" alt="Portfolio">
@@ -316,7 +319,7 @@ if (isset($_SESSION['l']) && isset($_SESSION['p']))
 { 
 
 	 echo 'Votre login est <b>'.$_SESSION['l'].'</b> <br>et votre mot de passe est <b>'.$_SESSION['p'].
-	'</b><br>Votre role est : '.$_SESSION['r'].' <br/> Identifiant de la session est :'.session_id().'</br>'; 
+	'</b><br>Votre role est : '.$_SESSION['r'].' <br/> Identifiant de la session est :'.$_SESSION['u'].'</br>'; 
 	echo '<a href="./logout.php">Cliquer pour se déconnecter</a>';
 
 }

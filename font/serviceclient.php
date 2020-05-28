@@ -602,9 +602,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right menu">
-        <li><a href="Ajouterservice.php">ajouter</a></li>
+        
        
-        <li><a href="Afficherservice.php">consulter</a></li>
+        <li><a href="Afficherserviceclient.php">consulter</a></li>
       
       </li>
 
@@ -681,12 +681,12 @@ else {
                   <div class="box"><p><?PHP echo $description_service ?></p></div>
                 </div>
                 <div class="col-md-12 protfolio-list padding-0">
-                <form method="POST" action="supprimerservice.php">
-  <input class="btn btn-default btn-main" type="submit" name="supprimer" style="position: absolute;left: 10px;top: -30px;" OnClick="return confirm('Voulez vous vraiment supprimer ce service ?');" value="supprimer">
+                
+  <input class="btn btn-default btn-main" type="submit" name="supprimer" style="position: absolute;left: 10px;top: -30px;" OnClick="return confirm('Voulez vous vraiment supprimer ce service ?');" value="supprimer" disabled>
   <input type="hidden" value="<?PHP echo $row['id_service']; ?>" name="id_service"> 
 
-  </form>
-  <a class="btn btn-default btn-main" href="Modifierservice.php?id_service=<?PHP echo $row['id_service']; ?>" style="position: absolute;left: 140px;top: -30px;">
+
+  <a class="btn btn-default btn-main"  style="position: absolute;left: 140px;top: -30px;" disabled >
   Modifier</a>
 
   <!--print-------------------------------------------->
