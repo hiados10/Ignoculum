@@ -94,7 +94,7 @@
           <h2>Ajouter une reservation</h2>
         </div>
         
-        <form class="" method="post" action="ajoutReservation.php" enctype="multipart/form-data">
+        <form class="" method="post" action="ajoutReservation.php" enctype="multipart/form-data" id="formAjout">
           <div class="col-md-6">
 
              <div class="form-group">
@@ -106,12 +106,11 @@
             </div>
 
             <div class="form-group">
-              <input required=""e type="date" class="form-control" placeholder="Date de la reservation" id="dateReservation" name="dateReservation" oninvalid="setCustomValidity('')" 
-              oninput="setCustomValidity('')">
+              <input required=""e type="date" class="form-control" placeholder="Date de la reservation" id="dateReservation" name="dateReservation">
             </div>
-
+            <!-- hel el page hedhi aala google chrome-->
             <div class="form-group">
-              <input required="" type="time" class="form-control" placeholder="Heure de la reservation" name="heureReservation" id="heureReservation">
+              <input id="dateForm" required="" type="time" class="form-control" placeholder="Heure de la reservation" name="heureReservation" id="heureReservation">
             </div>
             
           </div>
@@ -153,7 +152,7 @@
                             <!-- footer Media link section
                             ========================== -->
                        
-
+  
 
     <script src="plugins/jquery.min.js"></script>
 
@@ -173,10 +172,8 @@
     <script src="plugins/google-map/gmap.js"></script>
 
     <script src="js/script.js"></script>
+
+    <script src="js/reservation/ajoutReservation.js"></script>
     </body>
 
     </html>
-
-
-
-  

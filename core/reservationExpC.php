@@ -74,10 +74,11 @@ class reservationExpC
         }
 	}
 
-	public function afficheReservationExp()
+	public function afficheReservationExp($recherche='')
 	{
-
-		$sql="SElECT * From reservationExp";
+		$sql="SElECT numReservationExp,etatReservation,re.id_service as idService ,Nom,Prenom,NomService,PrixService From reservationExp re join service s on re.id_service = s.id_service join compte c on compte_cin = c.cin";
+		if ($recherche!='')
+			$sql=$sql." where concat(concat(Nom,' '),Prenom) like '%".$recherche."%'";
 		$db = config::getConnexion();
 		try{
 		$reserv=$db->query($sql);

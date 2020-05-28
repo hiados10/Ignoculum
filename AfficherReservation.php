@@ -118,7 +118,6 @@ if(isset($_GET['recherche']))
     </div>
   
     	</div>
- 
     	<table border="1" id="myTable" class="table table-bordered">
 <tr>
 <th>Num de la reservation</th>
@@ -151,45 +150,7 @@ $s2=$reservation1C->recupererCompte();
   </form>
   </td>
 
-  <script>
-
-function myFunction() {
-
-  var input, filter, table, tr, td, i, txtValue;
-
-  input = document.getElementById("myInput");
-
-  filter = input.value.toUpperCase();
-
-  table = document.getElementById("myTable");
-
-  tr = table.getElementsByTagName("tr");
-
-  for (i = 0; i < tr.length; i++) {
-
-    td = tr[i].getElementsByTagName("td")[2];
-
-    if (td) {
-
-      txtValue = td.textContent || td.innerText;
-
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-
-        tr[i].style.display = "";
-
-      } else {
-
-        tr[i].style.display = "none";
-
-      }
-
-    }      
-
-  }
-
-}
-
-</script>
+  
   <td><a class="btn btn-default btn-main" <?php if ( $row['etatReservation'] == 0) { echo 'href="ModifierReservation.php?numReservation='.$row['numReservation'].'"'; } else  { echo "disabled";}?> >
   Modifier</a>
 
@@ -200,10 +161,11 @@ function myFunction() {
 ?>
 </table>
 
+
  <form method="POST">
   <input class="btn btn-default btn-main" type="submit" name="imprimer" OnClick= 'window.print();return false;' value="Imprimer">
  </form>
-  
+
     	
     	
       <div class="clearfix"> </div>
@@ -241,6 +203,45 @@ function myFunction() {
     <script src="plugins/google-map/gmap.js"></script>
 
     <script src="js/script.js"></script>
+    <script>
+
+function myFunction() {
+
+  var input, filter, table, tr, td, i, txtValue;
+
+  input = document.getElementById("myInput");
+
+  filter = input.value.toUpperCase();
+
+  table = document.getElementById("myTable");
+
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+
+    td = tr[i].getElementsByTagName("td")[2];
+
+    if (td) {
+
+      txtValue = td.textContent || td.innerText;
+
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+
+        tr[i].style.display = "";
+
+      } else {
+
+        tr[i].style.display = "none";
+
+      }
+
+    }      
+
+  }
+
+
+</script>
+
     </body>
 
     </html> 

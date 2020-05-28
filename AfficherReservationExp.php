@@ -2,10 +2,16 @@
 include "../../config.php";
 include "../core/reservationExpC.php";
 $reservationExp1C=new reservationExpC();
-$listereservations=$reservationExp1C->afficheReservationExp();
+if(isset($_GET['recherche']))
+  $listereservations=$reservationExp1C->afficheReservationExp($_GET['recherche']);
+  else
+  $listereservations=$reservationExp1C->afficheReservationExp();
 
 //var_dump($listeEmployes->fetchAll());
 ?>
+
+
+
 <!doctype html>
 <html class="no-js" lang="zxx">
   <head>
@@ -104,6 +110,15 @@ $listereservations=$reservationExp1C->afficheReservationExp();
     <div class="product-block">
     	<div class="pro-head">
     		<h2>Vos reservations Express : </h2>
+
+          <div class="search widgets">
+      <form class="form-inline" method="GET" action="AfficherReservationExp.php">
+        <div class="form-group search-input">
+          <input name="recherche" type="text" class="form-control" placeholder="Recherche...">
+        </div>
+        <button type="submit" class="btn btn-default tf-search-btn"><i class="tf-search"></i></button>
+      </form>
+    </div>
   
     	</div>
  
@@ -127,26 +142,11 @@ $s2=$reservationExp1C->recupererCompte();
   ?>
   <tr>
   <td><?PHP echo $row['numReservationExp']; ?></td>
-  <td><?PHP 
-  foreach ($s2 as $key) {
-     if(  $row['cin'] == $key['cin'] ){
-      echo $key['Nom']." ".$key['Prenom'];
-      break;
-    }
-  }
-  ?></td>
-  <td><?PHP
-  foreach ($s1 as $key) {
-     if(  $row['id_service'] == $key['id_service'] ){
-      echo $key['NomService'];
-      break;
-    }
-  }
-   ?></td>
+  <td><?PHP echo $row['Nom']." ".$row['Prenom'] ?></td>
+  <td><?PHP echo $row['NomService']?></td>
   <td>Votre reservation sera effectuer dans 24h</td>
   <td>-</td>
-  <td><?PHP if ( $row['etatReservation'] == 0) { echo "Pas encore confirmée"; } else  {echo "Confirmée";} ?></td>
-
+  <td><?PHP if ( $row['etatReservation'] == 0) echo "Pas encore confirmée"; elseif ($row['etatReservation'] == 1) echo "Confirmée"; else echo "Refusée"; ?></td>
   <td><form method="POST" action="supprimerReservationExp.php">
   <input class="btn btn-default btn-main" type="submit" name="supprimer" OnClick="return confirm('Voulez vous vraiment supprimer cette reservation ?');" value="supprimer">
   <input type="hidden" value="<?PHP echo $row['numReservationExp']; ?>" name="numReservationExp">
@@ -204,9 +204,9 @@ function myFunction() {
 </table>
 
     	
-<?php
-  echo "<p  id='imprimer'><a href='' onclick='window.print();return false;'>imprimer </p>";
-?>
+ <form method="POST">
+  <input class="btn btn-default btn-main" type="submit" name="imprimer" OnClick= 'window.print();return false;' value="Imprimer">
+ </form>
   
     	
     	
