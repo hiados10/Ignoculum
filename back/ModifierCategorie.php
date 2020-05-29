@@ -32,6 +32,18 @@
 </head>
 
 <body>
+<?PHP
+include "../../entities/categorie.php";
+include "../../core/categorieC.php";
+include "../../config.php";
+if (isset($_GET['id_categorie'])){
+  $categorieC=new CategorieC();
+    $result=$categorieC->recupererCategorie($_GET['id_categorie']);
+  foreach($result as $row){
+    $id=$row['id_categorie'];
+    $nom=$row['nom'];
+   
+?>
     <!-- Left Panel -->
 
     <aside id="left-panel" class="left-panel">
@@ -242,7 +254,7 @@
         </header><!-- /header -->
         <!-- Header-->
 
-         <form method="POST" action="ajoutCategorie.php" >
+ 
         <div class="content mt-3">
             <div class="animated fadeIn">
 
@@ -251,23 +263,28 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Ajouter Categorie</strong>
+                                <strong class="card-title">Modifier Categorie</strong>
                             </div>
                             <div class="card-body">
                                 <!-- Credit Card -->
-                            
-                            
+                        <form method="POST" >
+                                <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">ID</label>
+                                                <input class="form-control" aria-required="true" aria-invalid="false" readonly type="number" name="id_categorie" id="id_categorie" min="1" value="<?PHP echo $id ?>">
+                                            </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Nom</label>
-                                                <input  class="form-control" type="text" id="nom" name="nom" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres seulement')" 
-   oninput="setCustomValidity('')">
+                                                <input class="form-control" aria-required="true" aria-invalid="false"type="text" id="nom" name="nom" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres seulement')" 
+                                            oninput="setCustomValidity('')" value="<?PHP echo $nom ?>">
                                             </div>
                                                  
                                                 <div>
-                                                    <input type="submit" name="ajouter" id="ajouter" value="Ajouter" class="btn btn-lg btn-info btn-block">
-                                                      
-</input>
+                                                    <input type="submit" class="btn btn-lg btn-info btn-block" name="modifier" id="modifier" value="modifier">
+                                                </input>
                                                 </div>
+                                                <div>
+                                                 <input type="hidden" name="id_ini" value="<?PHP echo $_GET['id_categorie'];?>">
+                                        </div>
                                         </form>
                                     </div>
                                 </div>
@@ -276,8 +293,8 @@
                         </div> <!-- .card -->
 
                     </div>
-</form> 
                     <!--/.col-->
+                         </form>
 
                                                     
 
@@ -293,3 +310,16 @@
                             <script src="assets/js/main.js"></script>
 </body>
 </html>
+<?PHP
+  }
+}
+if (isset($_POST['modifier'])){
+  $categorie=new Categorie($_POST['id_categorie'],$_POST['nom']);
+  $categorieC->modifierCategorie($categorie,$_POST['id_ini']);
+  echo $_POST['id_ini'];
+  //header('Location: AfficherCategorie.php');					
+    echo "<script language=javascript>
+  notifyMe();
+  </script>"; 
+}
+?>          

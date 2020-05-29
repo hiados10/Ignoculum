@@ -22,8 +22,7 @@
     <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
-
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/mystyles.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -41,7 +40,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
+                <a class="navbar-brand" href="./"><img src="images/ARACHNIDE.png" alt="Logo"></a>
                 <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
             </div>
 
@@ -242,27 +241,7 @@
         </header><!-- /header -->
         <!-- Header-->
 
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>Dashboard</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Forms</a></li>
-                            <li class="active">Basic</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <form method="POST" action="ajoutservice.php" >
+         <form method="POST" action="ajoutservice.php" >
         <div class="content mt-3">
             <div class="animated fadeIn">
 
@@ -284,7 +263,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Prix</label>
-                                                <input  class="form-control" type="number" name="prix_service" id="prix_service" min="1" required>
+                                                <input  class="form-control" type="number" name="prix_service" id="prix_service" required pattern="[0-9]+" oninvalid="setCustomValidity('Veuillez entrer des nombres seulement')">
                                             </div>
                                             <?php
 		include "../../config.php";

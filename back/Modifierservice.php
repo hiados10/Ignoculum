@@ -32,6 +32,23 @@
 </head>
 
 <body>
+<?php
+	include "../../Entities/service.php";
+	include "../../Core/serviceC.php";
+	include "../../config.php";
+	if (isset($_GET['id_service'])){
+		$serviceC=new serviceC();
+		$result=$serviceC->recupererservice($_GET['id_service']);
+		foreach($result as $row)
+		{
+			$id_service=$row['id_service'];
+			$nom_service=$row['nom_service'];
+			$idca=$row['idca'];
+            $prix_service=$row['prix_service'];
+            $description_service=$row['description_service'];
+            $img=$row['img'];
+
+?>
     <!-- Left Panel -->
 
     <aside id="left-panel" class="left-panel">
@@ -49,7 +66,7 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
-                        </li>
+                    </li>
                     <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Categorie</a>
@@ -242,7 +259,7 @@
         </header><!-- /header -->
         <!-- Header-->
 
-         <form method="POST" action="ajoutCategorie.php" >
+ 
         <div class="content mt-3">
             <div class="animated fadeIn">
 
@@ -251,23 +268,60 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Ajouter Categorie</strong>
+                                <strong class="card-title">Modifier Service</strong>
                             </div>
                             <div class="card-body">
                                 <!-- Credit Card -->
-                            
-                            
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nom</label>
-                                                <input  class="form-control" type="text" id="nom" name="nom" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres seulement')" 
-   oninput="setCustomValidity('')">
+<form method="POST" >
+                                <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">ID</label>
+                                                <input class="form-control" aria-required="true" aria-invalid="false" readonly type="number" name="id_service" id="id_service" min="1" value="<?php echo $id_service ?>">
                                             </div>
-                                                 
+                                            <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">Nom Service</label>
+                                                <input class="form-control" aria-required="true" aria-invalid="false"type="text" id="nom_service" name="nom_service" value="<?php echo $nom_service ?>" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres seulement')" 
+                                            oninput="setCustomValidity('')">
+                                            </div>
+                                            <?php
+		//include "../../config.php";
+		include "../../core/categorieC.php";
+		$categorieC=new CategorieC();
+        $liste=$categorieC->afficherCategories(); ?>
+                                                        <label for="cc-payment" class="control-label mb-1">Categorie</label>
+
+<select name="idca" id="idca" required class="form-control">
+                                                                        <div class="col col-md-3"><label for="select" class=" form-control-label">Select</label></div>
+
+<?php
+        foreach($liste as $row){
+         
+    ?>
+	<option value="<?PHP echo $row['id_categorie']; ?>"> <?PHP echo $row['nom']; ?>
+	</option>
+	<?PHP } ?>
+</select>
+<div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">Prix Service</label>
+                                                <input class="form-control" aria-required="true" aria-invalid="false"type="number" id="prix_service" name="prix_service" required pattern="[0-9]+" oninvalid="setCustomValidity('Veuillez entrer des nombres seulement')" value="<?php echo $prix_service ?>" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres seulement')" 
+                                            oninput="setCustomValidity('')">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">description Service</label>
+                                                <input class="form-control" aria-required="true" aria-invalid="false"type="text" id="description_service" name="description_service" value="<?php echo $description_service ?>">
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1">Image</label>
+                                            <br>
+                                            <input type="file" class="control-label mb-1" accept="image/jpg" name="img" id="imageFile" onchange="changeImage(row)"<?PHP echo $img ?>>            </div>
+                                            <div class="col-md-12">
+                                            </div>
                                                 <div>
-                                                    <input type="submit" name="ajouter" id="ajouter" value="Ajouter" class="btn btn-lg btn-info btn-block">
-                                                      
-</input>
+                                                    <input type="submit" class="btn btn-lg btn-info btn-block" name="modifier" id="modifier" value="modifier">
+                                                </input>
                                                 </div>
+                                                <div>
+                                                 <input type="hidden" name="id_ini" value="<?PHP echo $_GET['id_service'];?>">
+                                        </div>
                                         </form>
                                     </div>
                                 </div>
@@ -276,9 +330,22 @@
                         </div> <!-- .card -->
 
                     </div>
-</form> 
                     <!--/.col-->
-
+  </form>
+  <?php
+  }
+}
+if (isset($_POST['modifier'])){
+   
+    $service=new service($_POST['nom_service'],$_POST['idca'],$_POST['prix_service'],$_POST['description_service'],'./pictures/'.$_POST['nom_service'].'.jpg');
+    $serviceC->modifierservice($service,$_POST['id_ini']);
+    echo $_POST['id_ini'];
+   // header('Location: Afficherservice.php');
+      echo "<script language=javascript>
+    notifyMe();
+    </script>"; 
+  }
+?> 
                                                     
 
 
@@ -292,4 +359,4 @@
                             <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
                             <script src="assets/js/main.js"></script>
 </body>
-</html>
+</html>  

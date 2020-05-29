@@ -62,8 +62,9 @@ if (isset($_GET['search']))
     <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
-
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/css/mystyles.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -81,7 +82,7 @@ if (isset($_GET['search']))
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
+                <a class="navbar-brand" href="./"><img src="images/ARACHNIDE.png" alt="Logo"></a>
                 <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
             </div>
 
@@ -101,7 +102,7 @@ if (isset($_GET['search']))
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>services</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="Afficherservice.php">ajouter</a></li>
+                            <li><i class="fa fa-table"></i><a href="Ajouterservice.php">ajouter</a></li>
                             <li><i class="fa fa-table"></i><a href="Afficherservice.php">consulter</a></li>
                         </ul>
                     </li>
@@ -218,27 +219,7 @@ if (isset($_GET['search']))
         </header><!-- /header -->
         <!-- Header-->
 
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>Dashboard</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Forms</a></li>
-                            <li class="active">Basic</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+ 
         <div class="content mt-3">
             <div class="animated fadeIn">
                            
@@ -275,15 +256,15 @@ if (isset($_GET['search']))
                 </div>
                 
                             <div class="card-body">
-                                <table class="table">
+                                <table id="bootstrap-data-table-export" class="table table-dark table-striped table-bordered">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th scope="col">Categorie</th>
-                                            <th scope="col" >Nom</th>
-                                            <th scope="col">prix</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Supprimer</th>
-                                            <th scope="col">Modifer</th>
+                                            <th >Categorie</th>
+                                            <th  >Nom</th>
+                                            <th >prix</th>
+                                            <th >Description</th>
+                                            <th >Supprimer</th>
+                                            <th >Modifer</th>
                                         </tr>
                                     </thead>
                                     <tbody>
