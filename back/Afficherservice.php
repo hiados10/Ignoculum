@@ -69,7 +69,6 @@ if (isset($_GET['search']))
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
 
-
 </head>
 
 <body>
@@ -113,21 +112,7 @@ if (isset($_GET['search']))
                     <li class="menu-item-has-children dropdown">
                     
                    
-                        <div class="card">
-                            
-                            <div class="card-body">
-                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                <a  href='Afficherservice.php' class="nav-link" id="v-pills-profile-tab" name="trier" id="trier" data-filter="category-1"  aria-controls="v-pills-profile" aria-selected="false">ALL</a>                                    
-                                    <?PHP
-                                    foreach($listeCategories as $row){
-                                      ?>
-                                    <a  href='Afficherservice.php?cat=<?PHP echo $row['id_categorie']; ?>&trier=rr' class="nav-link" id="v-pills-profile-tab" name="trier" id="trier" data-filter="category-1"  aria-controls="v-pills-profile" aria-selected="false"><?PHP echo $row['nom']; ?></a>                                    
-                                    <?php } ?>
-                                </div>
-                                    
-                                 
-                                </div>
-                            </div>
+                 
                       
                     
                     <li>
@@ -236,14 +221,25 @@ if (isset($_GET['search']))
       <input type="submit" class="btn btn-1 btn-danger" name="trierp" value="trier par prix" style="position: absolute;
   top: 5px;
   right: 0;">
+
+<div class="dropdown" style="width:190px;position: absolute;top: 5px;
+  right:145px;">
+    <button class="btn btn-1 btn-danger dropdown-toggle" type="button" data-toggle="dropdown">Filter By
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href='Afficherservice.php'>ALL</a></li>
+      <?PHP
+                                    foreach($listeCategories as $row){
+                                      ?>
+      <li><a href='Afficherservice.php?cat=<?PHP echo $row['id_categorie']; ?>&trier=rr' name="trier" id="trier"><?PHP echo $row['nom']; ?></a></li>
+      <?php } ?>
+    </ul>
+  </div>
   	</form>
 
                             </div>
                             <div>
-                            <td>
-	  
-  </td>
-
+                      
 <button class="btn btn-warning btn-lg btn-block">
  		<?php
   echo "<b  id='imprimer'><a href='' onclick='window.print();return false;'>Imprimer </a></b>";
@@ -340,7 +336,7 @@ function myFunction() {
                             </div>
                     
 
-                                           
+                                        
 
 
                                           
