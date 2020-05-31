@@ -1,0 +1,16 @@
+.map__tunisie{
+	width: 18%;
+	position: absolute;
+	left: 50%;
+}
+
+.map__tunisie path{
+	fill: #04B45F;
+	stroke: #FFF;
+	stroke-width : 1px;
+		transition: fill 0.3s;
+}
+
+.map__tunisie path:hover{
+	fill: #0B6121;
+}
