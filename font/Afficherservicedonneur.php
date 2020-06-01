@@ -7,7 +7,7 @@ include "../../core/categorieC.php";
 $categorie1C=new CategorieC();
 $listeCategories=$categorie1C->afficherCategories();
 $service1C=new serviceC();
-$listeservices=$service1C->Affichservice2($_SESSION['u']);
+$listeservices=$service1C->Affichservice();
 $res=false;
 $maction='afficher';
 $cat="";
@@ -70,7 +70,7 @@ if (isset($_GET['search']))
     <link rel="stylesheet" href="plugins/slick/slick.css">
 
     <!-- Revolution Slider -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <style>
       /* Always set the map height explicitly to define the size of the div
@@ -191,6 +191,7 @@ if (isset($_GET['search']))
                    <input type="submit" class="btn btn-default btn-main" name="trierp" value="trier par prix">                            </form>
                            
                             </li>
+                            
                         </ul>
                         
       </li>
@@ -200,9 +201,9 @@ if (isset($_GET['search']))
     </div>
     
 <!--end tri prix et alphabet---------------------------------------------->
+<a  href='Afficherservicedonneur.php?trierm=rr'><button class="filter btn btn-default btn-main" name="trier" id="trier" data-filter="category-1">Mes services</button></a>                                    
 
         <div class="protfolio-mixitup-btn text-center">
-        <a  href='Afficherservicedonneur.php?trierm=rr'><button class="filter btn btn-default btn-main" name="trier" id="trier" data-filter="category-1">Mes services</button></a>                                    
         <a  href='Afficherservicedonneur.php'><button class="filter btn btn-default btn-main" name="trier" id="trier" data-filter="category-1">ALL</button></a>                                    
         
             
@@ -212,15 +213,17 @@ if (isset($_GET['search']))
                                       
                                       <a  href='Afficherservicedonneur.php?cat=<?PHP echo $row['id_categorie']; ?>&trier=rr'><button class="filter btn btn-default btn-main" name="trier" id="trier" data-filter="category-1"><?PHP echo $row['nom']; ?></button></a>                                    
                                     <?php } ?></div>
-    
-        
+                                    <table>    
         <?PHP
+        
 foreach($listeservices as $row){
   ?>
+<td>
   <div>
           <div class="filter-item col-md-4 col-sm-6 col-xs-12" data-category="category-1">
             <div class="portfolio-list">
-              <a href="service.php?id_service=<?PHP echo $row['id_service']; ?>">
+            <?PHP if ( $row['iduse'] == $_SESSION['u']) $a="service.php"; else $a="serviceclient.php"; ?>
+              <a href="<?PHP echo $a; ?>?id_service=<?PHP echo $row['id_service']; ?>">
                 <div class="th-mouse-portfolio-card">
                   <div class="thumbnail portfolio-thumbnail">
                     <img src="<?PHP echo $row['img']; ?>" alt="Portfolio">
@@ -241,9 +244,9 @@ foreach($listeservices as $row){
 		$categorieC=new CategorieC();
 		$liste=$categorieC->afficherCategories(); ?>
   
+<td>
 
-
-
+</table>
 
   <script>
 

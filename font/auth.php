@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="plugins/slick/slick.css">
 
     <!-- Revolution Slider -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <style>
       /* Always set the map height explicitly to define the size of the div
@@ -82,10 +82,10 @@
         <form class="" method="post" action="connexion.php" enctype="multipart/form-data">
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nom" id="login" name="login" >
+              <input type="text" class="form-control" placeholder="Nom" id="nom" name="nom" >
             </div>
             <div class="form-group">
-              <input type="pwd" class="form-control" placeholder="pwd" name="pwd" id="pwd" >
+              <input type="pwd" class="form-control" placeholder="mot de passe" name="mot_de_passe" id="mot_de_passe" >
             </div>
             
           </div>

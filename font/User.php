@@ -5,33 +5,33 @@ class user{
 	private $pwd;
 	private $role;
 	public $conn;	
-	function __construct($login,$pwd,$conn)
+	function __construct($nom,$mot_de_passe,$conn)
 	{
 		
-		$this->login=$login;
-		$this->pwd=$pwd;
+		$this->nom=$nom;
+		$this->mot_de_passe=$mot_de_passe;
 		$c=new Database();
 		$this->conn=$c->connexion();
 	}
 
 
-	function getLogin()
+	function getNom()
 	{
-		return $this->login;
+		return $this->nom;
 	}
-	function getPwd()
+	function getMot_de_passe()
 	{
-		return $this->pwd;
+		return $this->mot_de_passe;
 	}
-	function getRole()
+	function getType_compte()
 	{
-		return $this->role;
+		return $this->type_compte;
 	}
 
 
-	public function Logedin($conn,$login,$pwd)
+	public function Logedin($conn,$nom,$mot_de_passe)
 	{
-		$req="select * from user where login='$login' && pwd='$pwd'";
+		$req="select * from compte where nom='$nom' && mot_de_passe='$mot_de_passe'";
 		$rep=$conn->query($req);
 		return $rep->fetchAll();
 	}

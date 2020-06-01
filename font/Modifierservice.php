@@ -24,7 +24,7 @@ session_start ();
     <link rel="stylesheet" href="plugins/slick/slick.css">
 
     <!-- Revolution Slider -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <style>
       /* Always set the map height explicitly to define the size of the div
@@ -37,23 +37,25 @@ session_start ();
     <script src="plugins/modernizr.min.js"></script>
   </head>
   <body>
-  <?PHP
-include "../../Entities/service.php";
-include "../../Core/serviceC.php";
-include "../../config.php";
-if (isset($_GET['id_service'])){
-  $serviceC=new serviceC();
-    $result=$serviceC->recupererservice($_GET['id_service']);
-  foreach($result as $row)
-  {
-    $id_service=$row['id_service'];
-    $nom_service=$row['nom_service'];
-    $idca=$row['idca'];
-  $prix_service=$row['prix_service'];
-  $description_service=$row['description_service'];
-  $img=$row['img'];
-   
+  <?php
+	include "../../Entities/service.php";
+	include "../../Core/serviceC.php";
+	include "../../config.php";
+	if (isset($_GET['id_service'])){
+		$serviceC=new serviceC();
+		$result=$serviceC->recupererservice($_GET['id_service']);
+		foreach($result as $row)
+		{
+			$id_service=$row['id_service'];
+			$nom_service=$row['nom_service'];
+			$idca=$row['idca'];
+            $prix_service=$row['prix_service'];
+            $description_service=$row['description_service'];
+            $img=$row['img'];
+            $iduse=$row['iduse'];
+
 ?>
+   
     <!--[if lt IE 8]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -83,9 +85,9 @@ if (isset($_GET['id_service'])){
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right menu">
-      <li><a href="Ajouterservice.php">ajouter</a></li>
-        <li><a href="Modifierservice.php">modifer</a></li>
-        <li><a href="Afficherservice.php">consulter</a></li>
+      <li><a href="Ajouterservice.php">ajouter</a></li>  
+<?PHP if ( $_SESSION['r']=="admin") $a="Afficherservice.php"; else $a="Afficherservicedonneur.php"; ?>
+        <li><a href="<?PHP echo $a; ?>">consulter</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div>
@@ -151,11 +153,9 @@ foreach($liste as $row){
           <div class="col-md-12">
           </div>
           <div class="form-group">
-          <input type="text"  value="<?PHP echo $img;?>">
-            <input type="file" class="form-control" value="<?PHP echo $nom_service.".jpeg";?>" accept="image/jpg" name="imageFile" id="imageFile" onchange="changeImage(row)">
-            <input type="file" /> <span><?php echo $img; ?></span>
+            <input type="file" class="form-control" value="<?PHP echo $nom_service.".jpeg";?>" accept="image/jpg" name="img" id="img" onchange="changeImage(row)"><?php echo $img; ?></input>
              </div>
-             
+             <input type="hidden" name="iduse" id="iduse" value="<?PHP echo $iduse ?>">
           <div class="col-md-12">
           </div>
           <div class="col-md-12">
@@ -233,25 +233,17 @@ else {
 
     </html>
 	<?PHP
-  }
+
+}
 }
 if (isset($_POST['modifier'])){
-  $fileTmpPath = $_FILES['imageFile']['tmp_name'];
-  $fileName = $_FILES['imageFile']['name'];
-  $fileSize = $_FILES['imageFile']['size'];
-  $fileType = $_FILES['imageFile']['type'];
-  $fileNameCmps = explode(".", $fileName);
-  $fileExtension = strtolower(end($fileNameCmps));
-  $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
-  $uploadFileDir = './uploaded_files/';
-  $dest_path = $uploadFileDir . $newFileName;
-  
-  $service1=new service($_POST['nom_service'],$_POST['idca'],$_POST['prix_service'],$_POST['description_service'],$_POST['imageFile']);
-  //Partie2
+ 
+  $service=new service($_POST['nom_service'],$_POST['idca'],$_POST['prix_service'],$_POST['description_service'],'./pictures/'.$_POST['nom_service'].'.jpg',$_POST['iduse']);
+  $serviceC->modifierservice($service,$_POST['id_ini']);
   echo $_POST['id_ini'];
-  //header('Location: Afficherservice.php');
+ // header('Location: Afficherservice.php');
     echo "<script language=javascript>
   notifyMe();
   </script>"; 
 }
-?>            
+?>        

@@ -19,30 +19,30 @@ include 'User.php';
 	*/
 $c=new Database();
 $conn=$c->connexion();
-$user=new User($_POST['login'],$_POST['pwd'],$conn);
-$u=$user->Logedin($conn,$_POST['login'],$_POST['pwd']);
+$user=new User($_POST['nom'],$_POST['mot_de_passe'],$conn);
+$u=$user->Logedin($conn,$_POST['nom'],$_POST['mot_de_passe']);
 
 	//var_dump($u);
 //$logR=$_POST['login'];
 //$pwdR=$_POST['pwd'];
 $vide=false;
-if (!empty($_POST['login']) && !empty($_POST['pwd'])){
+if (!empty($_POST['nom']) && !empty($_POST['mot_de_passe'])){
 	
 	foreach($u as $t){
 		$vide=true;
-	if ($t['login']==$_POST['login'] && $t['pwd']==$_POST['pwd']){
+	if ($t['nom']==$_POST['nom'] && $t['mot_de_passe']==$_POST['mot_de_passe']){
 		
 		session_start();
-		$_SESSION['l']=$_POST['login'];
-		$_SESSION['p']=$_POST['pwd'];
-		$_SESSION['r']=$t['role'];
-		$_SESSION['u']=$t['iduser'];
+		$_SESSION['l']=$_POST['nom'];
+		$_SESSION['p']=$_POST['mot_de_passe'];
+		$_SESSION['r']=$t['type_compte'];
+		$_SESSION['u']=$t['cin'];
 		//header("location:Afficherservice.php");
-		if($t['role']=="admin")
+		if($t['type_compte']=="admin")
 		header("location:Afficherservice.php");
-	else if ($t['role']=="donneur")
+	else if ($t['type_compte']=="donneur")
 	header("location:Afficherservicedonneur.php");
-	else if ($t['role']=="client")
+	else if ($t['type_compte']=="client")
 	header("location:Afficherserviceclient.php");
 
 	

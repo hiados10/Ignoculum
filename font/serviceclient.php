@@ -470,7 +470,7 @@ mail($to, $subject, $message, implode("\r\n", $headers));
     <link rel="stylesheet" href="plugins/slick/slick.css">
 
     <!-- Revolution Slider -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <style>
       /* Always set the map height explicitly to define the size of the div
