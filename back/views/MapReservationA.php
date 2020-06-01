@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="dropdown for-notification">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
                                 <i class="fa fa-bell"></i>
                                 <span class="count bg-danger">5</span>
                             </button>
@@ -109,7 +109,7 @@
                         </div>
 
                         <div class="dropdown for-message">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
                                 <i class="ti-email"></i>
                                 <span class="count bg-primary">9</span>
                             </button>
@@ -195,21 +195,21 @@
         </header><!-- /header -->
         <!-- Header-->
 
-        <div class="breadcrumbs">
+        <div class="breadcrumbs" style="background-color:#272C33">
             <div class="col-sm-4">
-                <div class="page-header float-left">
+                <div class="page-header float-left" style="background-color:#272C33">
                     <div class="page-title">
-                        <h1>Arachnide</h1>
+                        <h1 style="color: white">Arachnide</h1>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
+            <div class="col-sm-8" style="background-color:#272C33">
+                <div class="page-header float-right" style="background-color:#272C33">
+                    <div class="page-title" style="background-color:#272C33">
+                        <ol class="breadcrumb text-right" style="background-color:#272C33">
                             <li><a href="#">Arachnide</a></li>
                             <li><a href="#">Reservation</a></li>
-                            <li class="active">Statistiques</li>
+                            <li class="active" style="color: white">Statistiques</li>
                         </ol>
                     </div>
                 </div>
