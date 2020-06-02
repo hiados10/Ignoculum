@@ -1,54 +1,54 @@
 <?PHP
 include "../config.php"; 
 class user{
-	private $iduser;
-	private $login;
-	private $pwd;
-	private $role;
+	private $cin;
+	private $nom;
+	private $mot_de_passe;
+	private $type_compte;
 	public $conn;	
-	function __construct($iduser,$login,$pwd,$role,$conn)
+	function __construct($cin,$nom,$mot_de_passe,$type_compte,$conn)
 	{
 		
-		$this->iduser=$iduser;
-		$this->login=$login;
-		$this->pwd=$pwd;
-		$this->role=$role;
+		$this->cin=$cin;
+		$this->nom=$nom;
+		$this->mot_de_passe=$mot_de_passe;
+		$this->type_compte=$type_compte;
 		$c=new Database();
 		$this->conn=$c->connexion();
 	}
 
-	function getIduser()
+	function getCin()
 	{
-		return $this->iduser;
+		return $this->cin;
 	}
-	function getLogin()
+	function getNom()
 	{
-		return $this->login;
+		return $this->nom;
 	}
-	function getPwd()
+	function getMot_de_passe()
 	{
-		return $this->pwd;
+		return $this->mot_de_passe;
 	}
-	function getRole()
+	function gettype_compte()
 	{
-		return $this->role;
+		return $this->type_compte;
 	}
 
-	function setIduser($iduser)
+	function setCin($cin)
 	{
-		 $this->iduser=$iduser;
+		 $this->cin=$cin;
 	}
-	function setLogin($login)
+	function setNom($nom)
 	{
-		 $this->login=$login;
+		 $this->nom=$nom;
 	}
-	function setpwd($pwd)
+	function setmot_de_passe($mot_de_passe)
 	{
-		 $this->pwd=$pwd;
+		 $this->mot_de_passe=$mot_de_passe;
 	}
-	function setRole($role)
+	function setType_compte($type_compte)
 	{
-		 $this->role=$role;
+		 $this->type_compte=$type_compte;
 	}
 }
 ?>
