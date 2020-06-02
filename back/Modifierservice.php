@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
 
-    <link rel="stylesheet" href="assets/css/mystyles.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -47,6 +47,7 @@
             $prix_service=$row['prix_service'];
             $description_service=$row['description_service'];
             $img=$row['img'];
+            $iduse=$row['iduse'];
 
 ?>
     <!-- Left Panel -->
@@ -82,6 +83,7 @@
                             <li><i class="fa fa-table"></i><a href="Afficherservice.php">consulter</a></li>
                         </ul>
                     </li>
+    
     
 
                     <h3 class="menu-title">Icons</h3><!-- /.menu-title -->
@@ -129,11 +131,10 @@
     <!-- Left Panel -->
 
     <!-- Right Panel -->
+    <div id="right-panel" class="right-panel" style="background-color:#070719">
 
-    <div id="right-panel" class="right-panel">
-
-        <!-- Header-->
-        <header id="header" class="header">
+<!-- Header-->
+<header id="header" class="header" style="background-color:#070719">
 
             <div class="header-menu">
 
@@ -266,11 +267,11 @@
 
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
+                        <div class="card" style="color:white">
+                            <div class="card-header"  style="background-color:#070719">
                                 <strong class="card-title">Modifier Service</strong>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body"  style="background-color:#070719">
                                 <!-- Credit Card -->
 <form method="POST" >
                                 <div class="form-group">
@@ -301,27 +302,31 @@
 	<?PHP } ?>
 </select>
 <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Prix Service</label>
+                                                <label for="cc-payment" class="control-label mb-1">Prix</label>
                                                 <input class="form-control" aria-required="true" aria-invalid="false"type="number" id="prix_service" name="prix_service" required pattern="[0-9]+" oninvalid="setCustomValidity('Veuillez entrer des nombres seulement')" value="<?php echo $prix_service ?>" required pattern ='[A-z]{1,}' oninvalid="setCustomValidity('Veuillez entrer des lettres seulement')" 
                                             oninput="setCustomValidity('')">
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">description Service</label>
-                                                <input class="form-control" aria-required="true" aria-invalid="false"type="text" id="description_service" name="description_service" value="<?php echo $description_service ?>">
+                                                <label for="cc-payment" class="control-label mb-1">Description</label>
+                                                <textarea  class="form-control" type="text" name="description_service" id="decription_service" ><?php echo $description_service ?></textarea>
                                             </div>
                                             <div class="form-group">
                                             <label for="cc-payment" class="control-label mb-1">Image</label>
                                             <br>
                                             <input type="file" class="control-label mb-1" accept="image/jpg" name="img" id="imageFile" onchange="changeImage(row)"<?PHP echo $img ?>>            </div>
+                                            <input type="hidden" name="iduse" id="iduse" value="<?PHP echo $iduse ?>">
+                                            <input type="hidden" name="id_ini" value="<?PHP echo $_GET['id_service'];?>">
+
                                             <div class="col-md-12">
                                             </div>
-                                                <div>
-                                                    <input type="submit" class="btn btn-lg btn-info btn-block" name="modifier" id="modifier" value="modifier">
-                                                </input>
-                                                </div>
+                                               
                                                 <div>
                                                  <input type="hidden" name="id_ini" value="<?PHP echo $_GET['id_service'];?>">
                                         </div>
+                                        <div>
+                                                    <input type="submit" class="btn btn-warning btn-lg btn-block" name="modifier" id="modifier" value="modifier">
+                                                </input>
+                                                </div>
                                         </form>
                                     </div>
                                 </div>
@@ -331,21 +336,8 @@
 
                     </div>
                     <!--/.col-->
-  </form>
-  <?php
-  }
-}
-if (isset($_POST['modifier'])){
-   
-    $service=new service($_POST['nom_service'],$_POST['idca'],$_POST['prix_service'],$_POST['description_service'],'./pictures/'.$_POST['nom_service'].'.jpg');
-    $serviceC->modifierservice($service,$_POST['id_ini']);
-    echo $_POST['id_ini'];
-   // header('Location: Afficherservice.php');
-      echo "<script language=javascript>
-    notifyMe();
-    </script>"; 
-  }
-?> 
+ 
+
                                                     
 
 
@@ -360,3 +352,19 @@ if (isset($_POST['modifier'])){
                             <script src="assets/js/main.js"></script>
 </body>
 </html>  
+</form>
+<?PHP
+
+}
+}
+if (isset($_POST['modifier'])){
+ 
+  $service=new service($_POST['nom_service'],$_POST['idca'],$_POST['prix_service'],$_POST['description_service'],'./pictures/'.$_POST['nom_service'].'.jpg',$_POST['iduse']);
+  $serviceC->modifierservice($service,$_POST['id_ini']);
+  echo $_POST['id_ini'];
+ // header('Location: Afficherservice.php');
+    echo "<script language=javascript>
+  notifyMe();
+  </script>"; 
+}
+?>        
