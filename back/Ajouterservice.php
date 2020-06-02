@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="assets/css/mystyles.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -112,10 +112,10 @@
 
     <!-- Right Panel -->
 
-    <div id="right-panel" class="right-panel">
+    <div id="right-panel" class="right-panel" style="background-color:#070719">
 
         <!-- Header-->
-        <header id="header" class="header">
+        <header id="header" class="header" style="background-color:#070719">
 
             <div class="header-menu">
 
@@ -241,18 +241,18 @@
         </header><!-- /header -->
         <!-- Header-->
 
-         <form method="POST" action="ajoutservice.php" >
+         <form method="POST" action="ajoutservice.php"  >
         <div class="content mt-3">
             <div class="animated fadeIn">
 
 
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Ajouter Service</strong>
+                        <div class="card" style="color:white">
+                            <div class="card-header"  style="background-color:#070719">
+                                <strong class="card-title" style="color:white">Ajouter Service</strong>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style="background-color:#070719">
                                 <!-- Credit Card -->
                             
                             
@@ -265,6 +265,11 @@
                                                 <label for="cc-payment" class="control-label mb-1">Prix</label>
                                                 <input  class="form-control" type="number" name="prix_service" id="prix_service" required pattern="[0-9]+" oninvalid="setCustomValidity('Veuillez entrer des nombres seulement')">
                                             </div>
+                                            <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">Description</label>
+                                                <textarea  class="form-control" type="text" name="description_service" id="decription_service"></textarea>
+                                            </div>
+                                            
                                             <?php
 		include "../../config.php";
 		include "../../core/categorieC.php";
@@ -283,24 +288,22 @@
 	</option>
 	<?PHP } ?>
 </select>
-
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Description</label>
-                                                <textarea  class="form-control" type="text" name="description_service" id="decription_service"></textarea>
-                                            </div>
-                           
-                                            <div class="form-group">
+<br>
+<div class="form-group">
                                             <label for="cc-payment" class="control-label mb-1">Image</label>
                                             <br>
                                             <input type="file" class="control-label mb-1" accept="image/jpg" name="img" id="imageFile" onchange="changeImage(row)">            </div>
                                             <div class="col-md-12">
                                             </div>
+                                            </div>
+                                            
+                           
+                                           
 
 
 
                                                 <div>
-                                                    <input type="submit" name="ajouter" id="ajouter" value="Ajouter" class="btn btn-lg btn-info btn-block">
+                                                    <input type="submit" name="ajouter" id="ajouter" value="Ajouter" class="btn btn-warning btn-lg btn-block">
                                                       
                                                     </input>
                                                 </div>

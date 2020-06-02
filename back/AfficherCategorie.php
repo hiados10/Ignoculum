@@ -31,7 +31,7 @@ $listeCategories=$categorie1C->afficherCategories();
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
 
-    <link rel="stylesheet" href="assets/css/mystyles.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -120,10 +120,10 @@ $listeCategories=$categorie1C->afficherCategories();
 
     <!-- Right Panel -->
 
-    <div id="right-panel" class="right-panel">
+    <div id="right-panel" class="right-panel" style="background-color:#070719">
 
         <!-- Header-->
-        <header id="header" class="header">
+        <header id="header" class="header" style="background-color:#070719">
 
             <div class="header-menu">
 
@@ -255,9 +255,9 @@ $listeCategories=$categorie1C->afficherCategories();
                            
 
                                 <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Categorie</strong>
+                        <div class="card"  style="color:white">
+                            <div class="card-header"  style="background-color:#070719">
+                                <strong class="card-title" style="color:white">Categorie</strong>
                             </div>
                             <div>
 <button class="btn btn-warning btn-lg btn-block">
@@ -269,9 +269,9 @@ $listeCategories=$categorie1C->afficherCategories();
 
 				  <div class="clearfix"> </div>
 				</div>
-                            <div class="card-body">
-                                <table class="table">
-                                    <thead class="thead-dark">
+                            <div class="card-body" style="background-color:#070719">
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                    <thead>
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">Nom</th>
@@ -354,13 +354,23 @@ function myFunction() {
                                 <!-- Right Panel -->
                                 
 
-                            <script src="vendors/jquery/dist/jquery.min.js"></script>
-                            <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
+                     
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
-                            <script src="vendors/jquery-validation/dist/jquery.validate.min.js"></script>
-                            <script src="vendors/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
 
-                            <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-                            <script src="assets/js/main.js"></script>
+    <script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="vendors/jszip/dist/jszip.min.js"></script>
+    <script src="vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <script src="assets/js/init-scripts/data-table/datatables-init.js"></script>
 </body>
 </html>

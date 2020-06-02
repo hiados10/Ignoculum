@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
 
-    <link rel="stylesheet" href="assets/css/mystyles.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -113,10 +113,10 @@
 
     <!-- Right Panel -->
 
-    <div id="right-panel" class="right-panel">
+    <div id="right-panel" class="right-panel" style="background-color:#070719">
 
         <!-- Header-->
-        <header id="header" class="header">
+        <header id="header" class="header" style="background-color:#070719">
 
             <div class="header-menu">
 
@@ -249,11 +249,11 @@
 
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Ajouter Categorie</strong>
+                        <div class="card" style="color:white">
+                            <div class="card-header" style="background-color:#070719">
+                                <strong class="card-title" style="color:white">Ajouter Categorie</strong>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style="background-color:#070719">
                                 <!-- Credit Card -->
                             
                             
@@ -264,7 +264,7 @@
                                             </div>
                                                  
                                                 <div>
-                                                    <input type="submit" name="ajouter" id="ajouter" value="Ajouter" class="btn btn-lg btn-info btn-block">
+                                                    <input type="submit" name="ajouter" id="ajouter" value="Ajouter" class="btn btn-warning btn-lg btn-block">
                                                       
 </input>
                                                 </div>
