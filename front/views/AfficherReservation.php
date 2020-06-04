@@ -6,19 +6,25 @@ if(isset($_GET['recherche']))
   $listereservations=$reservation1C->afficheReservation($_GET['recherche']);
   else
   $listereservations=$reservation1C->afficheReservation();
+    
+if(isset($_GET['triDate']))
+      $listereservations=$reservation1C->trierDate();
 
 //var_dump($listeEmployes->fetchAll());
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Arachnide</title>
+    <title>Vos reservations</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="shortcut icon" href="Arachnide.png">
     <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
@@ -44,6 +50,8 @@ if(isset($_GET['recherche']))
     </style>
     <script src="plugins/modernizr.min.js"></script>
   </head>
+
+
   <body>
     <!--[if lt IE 8]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -106,7 +114,9 @@ if(isset($_GET['recherche']))
   <div class="inner-block">
     <div class="product-block">
     	<div class="pro-head">
-    		<h2>Vos reservations : </h2>
+
+    				<h2>Vos reservations : </h2>
+
 
         <div class="search widgets">
       <form class="form-inline" method="GET" action="AfficherReservation.php">
@@ -114,6 +124,9 @@ if(isset($_GET['recherche']))
           <input name="recherche" type="text" class="form-control" placeholder="Recherche...">
         </div>
         <button type="submit" class="btn btn-default tf-search-btn"><i class="tf-search"></i></button>
+
+    	<input type="submit" class="btn btn-default btn-main" style="position: absolute; right: 3%;" name="triDate" value="trier par date">
+
       </form>
     </div>
   
@@ -142,7 +155,7 @@ $s2=$reservation1C->recupererCompte();
   <td><?PHP echo $row['NomService']?></td>
   <td><?PHP echo $row['dateReservation']; ?></td>
   <td><?PHP echo $row['heureReservation']; ?></td>
-  <td><?PHP if ( $row['etatReservation'] == 0) echo "Pas encore confirmée"; elseif ($row['etatReservation'] == 1) echo "Confirmée"; else echo "Refusée"; ?></td>
+  <td><?PHP if ( $row['etatReservation'] == 0) echo "Pas encore confirmée"; elseif ($row['etatReservation'] == 1) echo "Acceptée"; else echo "Refusée"; ?></td>
 
   <td><form method="POST" action="supprimerReservation.php">
   <input class="btn btn-default btn-main" type="submit" name="supprimer" OnClick="return confirm('Voulez vous vraiment supprimer cette reservation ?');" value="supprimer">

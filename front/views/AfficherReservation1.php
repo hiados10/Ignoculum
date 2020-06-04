@@ -9,6 +9,9 @@ if(isset($_GET['recherche']))
   else
   $listereservations=$reservation1C->afficheReservation1();
 
+if(isset($_GET['triDate']))
+      $listereservations=$reservation1C->trierDate();
+
 //var_dump($listeEmployes->fetchAll());
 ?>
 <!doctype html>
@@ -16,11 +19,13 @@ if(isset($_GET['recherche']))
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Arachnide</title>
+    <title>Vos reservations</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="shortcut icon" href="Arachnide.png">
     <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
@@ -69,7 +74,7 @@ if(isset($_GET['recherche']))
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand logo" href="index.html">
-        <img src="images/logo-yellow.png" alt="">
+        <img src="images/arachnide.png" alt="">
       </a>
     </div>
 
@@ -116,6 +121,9 @@ if(isset($_GET['recherche']))
           <input name="recherche" type="text" class="form-control" placeholder="Recherche...">
         </div>
         <button type="submit" class="btn btn-default tf-search-btn"><i class="tf-search"></i></button>
+
+        <input type="submit" class="btn btn-default btn-main" style="position: absolute; right: 3%;" name="triDate" value="trier par date">
+
       </form>
     </div>
   
@@ -145,7 +153,7 @@ $s2=$reservation1C->recupererCompte();
   <td><?PHP echo $row['NomService']?></td>
   <td><?PHP echo $row['dateReservation']; ?></td>
   <td><?PHP echo $row['heureReservation']; ?></td>
-  <td><?PHP if ( $row['etatReservation'] == 0) echo "Pas encore confirmée"; elseif ($row['etatReservation'] == 1) echo "Confirmée"; else echo "Refusée"; ?></td>
+  <td><?PHP if ( $row['etatReservation'] == 0) echo "Pas encore confirmée"; elseif ($row['etatReservation'] == 1) echo "Acceptée"; else echo "Refusée"; ?></td>
 
 
   <td><a href="AfficherReservation1.php?idmod=<?php echo $row['numReservation']; ?>&etat=1" class="btn btn-default btn-main">Accepter</a></td>
