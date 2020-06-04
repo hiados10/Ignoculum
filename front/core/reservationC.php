@@ -172,5 +172,18 @@ class reservationC
   			print_r($datas);
         }
 	}
+
+		public function trierDate()
+	{
+		$sq2 = "SElECT numReservation,dateReservation,heureReservation,etatReservation,r.id_service as idService ,Nom,Prenom,NomService,PrixService From reservation r join service s on r.id_service = s.id_service join compte c on compte_cin = c.cin order by dateReservation ";
+		$db = config::getConnexion();
+		try{
+			$tri = $db->query($sq2); 
+			return $tri;
+		}
+			catch(Exception $ee){
+			echo 'Erreur: '.$ee->getMessage();
+		}
+	}
 }
 ?>
