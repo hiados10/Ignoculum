@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand logo" href="index.html">
-        <img src="images/logo-yellow.png" alt="">
+        <img src="images/logo-yellow1.png" alt="">
       </a>
     </div>
 
@@ -19,8 +19,8 @@
       <ul class="nav navbar-nav navbar-right menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="<?php echo 'services.php'; ?>">Ajout</a></li>
-        <li><a href="<?php echo 'portfolio.php'; ?>">Mes Evenements</a></li>
-        <li><a href="blog.html">Blog</a></li>
+        <li><a href="<?php echo 'blog.php'; ?>">Mes Evenements</a></li>
+        <li><a href="<?php echo 'portfolio.php'; ?>">Tout les Evenements</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

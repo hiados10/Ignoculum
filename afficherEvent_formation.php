@@ -67,16 +67,16 @@
     <div class="container-fluid padding-0">
       <div class="row margin-0">
         <div class="title text-center">
-          <h2>Les foires</h2>
+          <h2>Les formations</h2>
         </div>
         <div class="flex">
           <div class="col-md-12 col-lg-6  padding-0">
-            <img src="images/portfolio/about.jpg" alt="">
+            <img src="images/portfolio/formation1.jpg" alt="">
           </div>
           <div class="col-md-12 col-lg-6 portfolio-single-description padding-0">
             <div class="portfolio-single-info">
-              <p class="date">C’est un point de rencontres et d’échanges entre le vendeur et le client permettant ainsi aux exposants de se faire connaître, et de prospecter de nouveaux marchés.</p>
-              <h3 class="portfolio-single-title"> événement temporaire récurrent dans de différentes intervalles, lors duquel on présente de nouveaux produits et prestations de services. Le nombre de foires dans le monde entier est de plus en plus élevé. Il est alors important pour les exposants et les visiteurs d’avoir ici une vue de l’ensemble des expositions pour trouver le salon qui leur correspond.</h3>
+              <p class="date">La formation professionnelle est un investissement rentable et durable. Elle vous permet de développer, d’approfondir vos compétences techniques (hard skills) et vos compétences comportementales (soft skills).</p>
+              <h3 class="portfolio-single-title"> TROUVER LA FORMATION QUI VOUS CORRESPOND, C’EST FACILE</h3>
               <div class="row margin-0">
                 <div class="col-md-12 protfolio-list padding-0">
                   <div class="col-md-4 col-sm-6 padding-0">
@@ -108,7 +108,7 @@
                       <input type="text" class="form-control" placeholder="Veuillez saisir la localisation" name="recherche">
                     </div>
                     <div>
-                      <input class="btn btn-default btn-main" type="submit" value="Recherche" >
+                      <input class="btn btn-default btn-main" type="submit" value="Recherche">
                     </div>
 
                   </div>
@@ -129,9 +129,8 @@
               </div>
             </div>
           </section>
-         
+
           <section class="portfolio">
-          
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -140,23 +139,23 @@
           include "C:/xampp9\htdocs\projetWeb\core/evenementsC.php";
           $evenement = new EvenementC();
           if (@$_POST['recherche'] == null)
-            $listeEvent = $evenement->afficherEvents_foire();
+            $listeEvent = $evenement->afficherEvents_formation();
           else
             $listeEvent = $evenement->rechercher_evenement($_POST['recherche']);
-            
+
             if(isset($_POST['triera']))
             {
-              $listeEvent=$evenement->triera();
+              $listeEvent=$evenement->triera_formation();
             }
             if(isset($_POST['trierp']))
             {
-              $listeEvent=$evenement->trierp();
+              $listeEvent=$evenement->trierp_formation();
             }
 
           ?>
-
-<tr>
+   <tr>
               <td>
+
           <div id="Container" class="filtr-container row">
             <?php foreach($listeEvent as $event){ ?>
             <div class="filtr-item col-md-4 col-sm-6 col-xs-12" data-category="category-1">
@@ -166,12 +165,10 @@
                     <div class="thumbnail portfolio-thumbnail">
             <img src="<?php echo $event['img'] ?>" alt="Portfolio" style="max-width: 500px;max-height:500px;">
                       <div class="caption portfolio-caption">
-                        
-                       <p class="date"><?PHP echo $event['date_d']; ?> </p>
+                        <p class="date"><?PHP echo $event['date_d']; ?> </p>
                         <h3 class="portfolio-title"><?PHP echo $event['nom']; ?> </h3>
                         <p class="portfolio-subtitle">localisation : <?PHP echo $event['localisation']; ?> </p>
                         <p class="portfolio-subtitle">catégorie : <?PHP echo $event['Nom']; ?> </p>
-                        
                       </div>
                     </div>
                   </div>
@@ -180,9 +177,9 @@
             </div>
             </td>
             <?php }?>
-          
             </tr>
             </table>
+
           </div>
 
 
@@ -267,8 +264,6 @@
     </div>
   </footer>
 
-
-
   <script src="plugins/jquery.min.js"></script>
 <script>
   function redirectToProfile(id){
@@ -276,7 +271,6 @@
   }
 
 </script>
-
   <script src="plugins/jquery.min.js"></script>
 
   <script src="plugins/bootstrap/bootstrap.min.js"></script>

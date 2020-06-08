@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html class="no-js" lang="zxx">
   <head>
@@ -67,6 +68,8 @@
 include "C:/xampp9\htdocs\projetWeb\core/evenementsC.php";
 $evenement = new EvenementC();
   $event= $evenement->getEventById($_GET['id']);
+  $counter=count($evenement->checkIfClientParticipated($_GET['id'],1));
+  
 ?>
 <section class="contact-map">
   <div class="container-fluid">
@@ -125,6 +128,7 @@ $evenement = new EvenementC();
             <div class="services-icon">
               <i class="tf-mobile"></i>
             </div>
+            
             <h4 class="service-title">Nombre de places</h4>
             <p class="service-description">
             <?php echo $event['nbmax'];?>  
@@ -159,32 +163,47 @@ $evenement = new EvenementC();
     </div>
   </section>
             <div class="blog-single-form">
-              <form action="supprimerEvent.php" method="POST">
-                
-                <div class="col-md-12 padding-0">
-                  <div class="form-submit-btn text-center">
-                    <input type="submit"   class="btn btn-default btn-main th-btn"  name="supprimer" value="supprimer">
-                    <input type="hidden" value=<?php echo $event['IDevent'];?> name="IDevent">
-                  </div>
-                </div>
-
-                
-              </form>
-              <br> <br> <br> <br> <br> 
               
                 
                 <div class="col-md-12 padding-0">
                   <div class="form-submit-btn text-center">
-                  <a href="modifierEvent.php?id=<?PHP echo $event['IDevent']; ?>">modifier </a>
-	
+                    <?php 
+                    if ($counter==0){
+                    ?>
+                    <button  class="btn btn-default btn-main th-btn" onclick="participate(<?php echo $_GET['id']?>,1)">Participer</button>                                      
+                    <?php }else{                      
+                     ?>
+                                         <button  class="btn btn-default btn-main th-btn" onclick="cancelParticipate(<?php echo $_GET['id']?>,1)">Annuler</button>                                      
+                    <?php }?>
+                    <input type="hidden" class="btn btn-default btn-main th-btn"  value="<?PHP echo $event['IDuser']; ?>" name="IDuser">
+                    <input type="hidden" class="btn btn-default btn-main th-btn"  value="<?PHP echo $_GET['id'] ?>" name="IDevent">
                   </div>
                 </div>
+
+                
+             
+              
 
                 
              
             </div>
            
             
+           
+            
+         
+          <!-- See All Post -->
+          <div class="col-md-12">
+            <div class="see-all-post text-center">
+              <a class="btn btn-default th-btn solid-btn" href="#" role="button"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Retour au debut </a>
+            </div>
+          </div>
+  			</div>
+  			
+  			</div>
+  		</div>
+  	</div>
+  </section>
 
     <footer class="footer">
         <div class="container">
@@ -256,7 +275,7 @@ $evenement = new EvenementC();
         </div>
     </footer>
 
-
+   
     <script src="plugins/jquery.min.js"></script>
 
     <script src="plugins/bootstrap/bootstrap.min.js"></script>
@@ -272,8 +291,20 @@ $evenement = new EvenementC();
     <script src="plugins/jquery.vide.js"></script>
     <!-- google map -->
 
+
     <script src="js/script.js"></script>
-    <script>
+<script>
+function participate(idevent,idclient){
+  window.location.href="http://localhost/projetWeb/front/views/participer.php?IDuser="+idclient+"&IDevent="+idevent+"&operation=CREATION";  
+}
+
+function cancelParticipate(idevent,idclient){
+  window.location.href="http://localhost/projetWeb/front/views/participer.php?IDuser="+idclient+"&IDevent="+idevent+"&operation=DELETE";  
+}
+
+</script>
+
+<script>
         var map = L.map('map-leaflet').setView([0, 0], 1);
         let address="<?php echo $event['localisation'] ?>";
         console.log(address);
@@ -291,8 +322,8 @@ $evenement = new EvenementC();
     
           }));
         })
-    </script>
 
+    </script>
     
     </body>
 

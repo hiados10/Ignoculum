@@ -46,41 +46,15 @@
 
   <!-- Navigation -section
   =========================-->
-  <nav class="navbar navbar-fixed-top navigation">
-    <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand logo" href="index.html">
-          <img src="images/logo-yellow.png" alt="">
-        </a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav navbar-right menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="<?php echo 'services.php'; ?>">Ajout</a></li>
-          <li><a href="<?php echo 'portfolio.php'; ?>">Mes Evenements</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div>
-  </nav>
+  <?php include "C:/xampp9\htdocs\projetWeb/front/views\header.php"; ?> 
 
   <!-- Portfolio header-section 
   =========================-->
-  <section class="page-header services-header" data-parallax="scroll" data-image-src="images/header/portfolio-folding-img.jpg">
+  <section class="page-header services-header" data-parallax="scroll" data-image-src="../views/images/header/slide-1.jpg">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-center">Our Portfolio.<br> We Ensure Quality Design.</h1>
+          <h1 class="text-center">Mes évenements.</h1>
         </div>
       </div>
     </div>
@@ -96,24 +70,65 @@
           <div class="title text-center">
             <h2>Les évenements</h2>
           </div>
-          <div class="protfolio-mixitup-btn text-center">
-            <button class="filter btn btn-default btn-main active" data-filter="all">all</button>
-            <button class="filter btn btn-default btn-main" data-filter="category-1">branding</button>
-            <button class="filter btn btn-default btn-main" data-filter="category-2">User interface</button>
-            <button class="filter btn btn-default btn-main" data-filter="category-3">print design</button>
-          </div>
+          <section class="gallery">
+    <div class="container">
+      <div class="row">
+        <div class="gallery-description text-center">
+          <section class="contact-form">
+            <div class="container">
+              <div class="row">
+
+                <form action="blog.php" method="POST">
+                  <div class="col-md-12 col-lg-6 portfolio-single-description padding-0">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Veuillez saisir la localisation" name="recherche">
+                    </div>
+                    <div>
+                      <input class="btn btn-default btn-main" type="submit" value="Recherche" name="recherche" >
+                    </div>
+
+                  </div>
+                </form>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-right menu">
+        <li><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TRIER PAR</a>
+        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                            <form class="search-form" method="post">
+                            <input type="submit" class="btn btn-default btn-main" name="triera" value="trier par nom">
+                   <input type="submit" class="btn btn-default btn-main" name="trierp" value="trier par categorie">                            </form>
+                            </li>
+                        </ul>
+      </li>
+      </ul>
+    </div>
+              </div>
+            </div>
+          </section>
+          <table>
 
           <?php
           include "C:/xampp9\htdocs\projetWeb\core/evenementsC.php";
           $evenement = new EvenementC();
           if (@$_POST['recherche'] == null)
-            $listeEvent = $evenement->afficherEvents_foire("1");
+            $listeEvent = $evenement->afficherEventsById("1");
           else
             $listeEvent = $evenement->rechercher_evenement($_POST['recherche']);
 
+            if(isset($_POST['triera']))
+            {
+              $listeEvent=$evenement->triera_all();
+            }
+            if(isset($_POST['trierp']))
+            {
+              $listeEvent=$evenement->trierp_all();
+            }
+
           ?>
-
-
+          
+          
+            <tr>
+              <td>
           <div id="Container" class="filtr-container row">
             <?php foreach($listeEvent as $event){ ?>
             <div class="filtr-item col-md-4 col-sm-6 col-xs-12" data-category="category-1">
@@ -121,20 +136,27 @@
                 <a href="javascript:void(0)" onclick="redirectToProfile(<?php echo $event['IDevent']?>)">
                   <div class="th-mouse-portfolio-card">
                     <div class="thumbnail portfolio-thumbnail">
-            <img src="<?php echo $event['img'] ?>" alt="Portfolio" style="max-width: 200px;max-height:250px">
+           <img src="<?php echo $event['img'] ?>" alt="Portfolio" style="max-width: 500px;max-height:500px;">
                       <div class="caption portfolio-caption">
-                        <p class="date">type de l'évenement</p>
+                        <p class="date"><?PHP echo $event['date_d']; ?> </p>
                         <h3 class="portfolio-title"><?PHP echo $event['nom']; ?> </h3>
+                        <p class="portfolio-subtitle">localisation : <?PHP echo $event['localisation']; ?> </p>
+                        <p class="portfolio-subtitle">catégorie : <?PHP echo $event['Nom']; ?> </p>
                       </div>
                     </div>
                   </div>
                 </a>
               </div>
             </div>
+            </td>
             <?php }?>
-          
-
+           
+           
+            </tr>
+            </table>
           </div>
+          
+          
 
 
 
