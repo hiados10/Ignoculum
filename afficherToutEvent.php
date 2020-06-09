@@ -68,7 +68,7 @@
 include "C:/xampp9\htdocs\projetWeb\core/evenementsC.php";
 $evenement = new EvenementC();
   $event= $evenement->getEventById($_GET['id']);
-  $counter=count($evenement->checkIfClientParticipated($_GET['id'],1));
+  $counter=count($evenement->checkIfClientParticipated($_GET['id'],$_SESSION['IDuser']));
   
 ?>
 <section class="contact-map">
@@ -82,7 +82,7 @@ $evenement = new EvenementC();
         <div class="contact-info">
           <div class="contact-img">
           
-            <img src="<?php echo $event['img'] ?>" alt="Portfolio" style="max-width: 500px;max-height:500px;">
+            <img src="<?php echo $event['img'] ?>" alt="Portfolio" style="width: 300px;height:280px;">
           </div>
           <div class="contact-content">
             <div class="content-title-section">

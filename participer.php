@@ -1,4 +1,5 @@
 <?php
+session_start();
             include "C:/xampp9\htdocs\projetWeb\core/evenementsC.php";
            // include "C:/xampp9\htdocs\projetWeb/front/views\afficherToutEvent.php";
             $evenement = new EvenementC();
@@ -9,10 +10,10 @@
             {
                 if ($_GET['operation']=="CREATION")
                 {                
-            $evenement->participerClient($_GET["IDuser"],$_GET["IDevent"]);
+            $evenement->participerClient($_SESSION["IDuser"],$_GET["IDevent"]);
                 }
                 else {
-                    $evenement->cancelParticipation($_GET["IDuser"],$_GET["IDevent"]);
+                    $evenement->cancelParticipation($_SESSION["IDuser"],$_GET["IDevent"]);
                 }
                 $nb=$evenement->calculerPart($_GET["IDevent"]);
                 echo $nb;

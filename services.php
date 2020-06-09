@@ -6,7 +6,7 @@
     <title>Fiction Multipage Bootstrap Template</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script language="javascript" type="text/javascript" src="controle_saisie.js"> </script>
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
 
@@ -113,16 +113,16 @@
         <div class="title text-center">
           <h2>Ajouter un évenement</h2>
         </div>
-        <form class="" method="post" action="ajouterEvent.php" enctype="multipart/form-data">
+        <form class="" method="post" action="ajouterEvent.php" enctype="multipart/form-data" onsubmit="return verifForm(this)" id="f">
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nom" name="nom" >
+              <input type="text" class="form-control"  id="nom" placeholder="Nom" name="nom" onblur="isEmpty(this)">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Localisation" name="localisation" >
+              <input type="text" class="form-control" placeholder="Localisation"  id ="localisation" name="localisation" onblur="isEmpty(this)" >
             </div>
             <div class="form-group">
-              <input type="number" class="form-control" placeholder="Nombre de participants" name="nbmax" >
+              <input type="number" class="form-control" id="nb" placeholder="Nombre de participants" name="nbmax" onblur="isEmpty(this)">
             </div>
             
           </div>
@@ -146,10 +146,10 @@ foreach($listeType as $row){
             </div>
             
             <div class="form-group">
-              <input  placeholder="Date Debut" class="form-control"  name="date_d" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+              <input  placeholder="Date Debut" class="form-control"   id="startDate"  name="date_d" type="text" onfocus="(this.type='date')" onblur="comparer(this)" >
           </div> 
             <div class="form-group margin-0">
-              <input  placeholder="Date Fin" class="form-control" name="date_f"  type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+              <input  placeholder="Date Fin" class="form-control"   id="endDate" name="date_f"  type="text" onfocus="(this.type='date')" onblur="comparer(this)" >
             </div>
             
           </div>
@@ -174,13 +174,13 @@ foreach($listeCateg as $row){
           </div>
           <div class="col-md-12">
           <div class="form-group">
-              <input type="file" class="form-control" accept="image/jpg" name="img" id="imageFile" onchange="changeImage(event)">
+              <input type="file" class="form-control" id="image" accept="image/jpg" name="img" id="imageFile" onblur="isEmpty(this)" onchange="changeImage(event)">
             </div>
           </div>
             
           <div class="col-md-12">
             <div class="form-group">
-              <textarea class="form-control " rows="100" placeholder="Description" name="description" ></textarea>
+              <textarea class="form-control " rows="100" placeholder="Description" name="description" id="description" onblur="isEmpty(this)"></textarea>
             </div>
             <div class="contact-btn text-center">
               <input class="btn btn-default btn-main" type="submit" value="Ajouter">

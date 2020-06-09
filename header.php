@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <nav class="navbar navbar-fixed-top navigation" >
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -17,11 +19,19 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="<?php echo 'services.php'; ?>">Ajout</a></li>
+        <?php 
+        if (isset($_SESSION['email']) && isset($_SESSION['password'])){
+          if ($_SESSION['role']==='prestataire'){
+            ?>
+                    <li><a href="<?php echo 'services.php'; ?>">Ajout</a></li>
         <li><a href="<?php echo 'blog.php'; ?>">Mes Evenements</a></li>
+<?php
+          }
+        }
+        ?>
+
         <li><a href="<?php echo 'portfolio.php'; ?>">Tout les Evenements</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="<?php echo 'logout.php'; ?>">Déconnexion</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div>

@@ -54,7 +54,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-center">Mes évenements.</h1>
+          <h1 class="text-center"> évenements.</h1>
         </div>
       </div>
     </div>
@@ -136,7 +136,7 @@
                 <a href="javascript:void(0)" onclick="redirectToProfile(<?php echo $event['IDevent']?>)">
                   <div class="th-mouse-portfolio-card">
                     <div class="thumbnail portfolio-thumbnail">
-           <img src="<?php echo $event['img'] ?>" alt="Portfolio" style="max-width: 500px;max-height:500px;">
+           <img src="<?php echo $event['img'] ?>" alt="Portfolio" style="width: 300px;height:280px;">
                       <div class="caption portfolio-caption">
                         <p class="date"><?PHP echo $event['date_d']; ?> </p>
                         <h3 class="portfolio-title"><?PHP echo $event['nom']; ?> </h3>
